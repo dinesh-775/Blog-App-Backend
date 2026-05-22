@@ -64,11 +64,11 @@ const connectDB = async () => {
   }
 }
 
-app.listen(PORT, () => {
-  console.log(`Server started on port ${process.env.PORT}`)
-  connectDB()
-})
+const PORT = process.env.PORT || 4000;
 
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
+});
 // ── 404 catch-all ─────────────────────────────────────────────────────────────
 app.use((req, res) => {
   console.log("Invalid path:", req.url)
