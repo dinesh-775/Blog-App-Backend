@@ -1,0 +1,144 @@
+### ========================================
+### USER ROUTES
+### ========================================
+
+### Register a new USER
+POST http://localhost:4000/user-api/users
+Content-Type: application/json
+
+{
+  "username": "akhi_user",
+  "firstname": "Akhi",
+  "lastname": "sura",
+  "email": "akhi.user@example.com",
+  "password": "akhi@12345",
+  "profileImageURl": "https://example.com/avatars/user.png"
+}
+
+### Get all users/articles (USER role)
+# Added query param userId as required by backend
+GET http://localhost:4000/user-api/articles?userId=698989f3f071237d0526a830
+Content-Type: application/json
+
+### Add comment to an article (USER role)
+POST http://localhost:4000/user-api/articles/comments
+Content-Type: application/json
+
+{
+  "userId": "698989f3f071237d0526a830",
+  "articleId": "69898c7c392d21846cd36f3f",
+  "comment": "Nice article!"
+}
+
+### ========================================
+### AUTHOR ROUTES
+### ========================================
+
+### Register a new AUTHOR
+POST http://localhost:4000/author-api/users
+Content-Type: application/json
+
+{
+  "username": "ram_author",
+  "firstname": "Ram",
+  "lastname": "Author",
+  "email": "ram.author@example.com",
+  "password": "Author@12345",
+  "profileImageURl": "https://example.com/avatars/author.png"
+}
+
+### Create an article (AUTHOR role) - New endpoint
+POST http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+  "title": "bookkkk",
+  "category": "hisfbefhtory",
+  "content": "he is a aejfbkgood boy lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+}
+
+###  Get a specific article
+GET http://localhost:4000/author-api/articles/69898c7c392d21846cd36f3f
+
+### Get all articles
+GET http://localhost:4000/author-api/articles
+
+### Update an article
+PUT http://localhost:4000/author-api/articles
+Content-Type: application/json
+
+{
+  "articleId": "69898c7c392d21846cd36f3f",
+  "title": "Wisdom",
+  "category": "geography",
+  "content": "he is a very good good boy"
+}
+
+### Soft delete an article
+PATCH http://localhost:4000/author-api/articles/deactivate
+Content-Type: application/json
+
+{
+  "author": "698989f3f071237d0526a830",
+  "article_id": "69898c7c392d21846cd36f3f",
+  "title": "Wisdom",
+  "category": "geography",
+  "content": "he is a very good good boy"
+}
+
+
+### ========================================
+### ADMIN ROUTES
+### ========================================
+
+### Block a user (ADMIN role) 
+PUT http://localhost:4000/admin-api/users/block
+Content-Type: application/json
+
+{
+  "UserId": "698989f3f071237d0526a830"
+}
+
+### Unblock a user (ADMIN role)
+PUT http://localhost:4000/admin-api/users/unblock
+Content-Type: application/json
+
+{
+  "UserId": "698989f3f071237d0526a830"
+}
+
+### ========================================
+### COMMON ROUTES (All User Types)
+### ========================================
+
+### Login (All roles)
+POST http://localhost:4000/common-api/login
+Content-Type: application/json
+
+{
+  "email": "akhilsura@gmail.com",
+  "password": "1234"
+}
+
+
+### Logout (All roles)
+GET http://localhost:4000/common-api/logout
+
+### Update password (All roles)
+PUT http://localhost:4000/common-api/update-password
+Content-Type: application/json
+
+{
+  "email": "ram.author@example.com",
+  "currentpassword": "Author@12345",
+  "newpassword": "NewPass@123"
+}
+
+### password reset
+PUT http://localhost:4000/common-api/reset-password
+Content-Type: application/json
+
+{
+  "email": "ram.author@example.com",
+  "newpassword": "NewPass@123"
+}
