@@ -17,7 +17,7 @@ const app = exp()
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://capstone-frontend-olive.vercel.app"
+    "https://blog-app-gules-gamma.vercel.app"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
